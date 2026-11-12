@@ -22,9 +22,16 @@ const slides = [
 //récup éléments du slider
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
-const dots = document.querySelectorAll(".dot");
 const image = document.querySelector(".banner-img");
 const tagLine = document.querySelector("#banner p");
+const dotsContainer = document.querySelector(".dots");
+
+slides.forEach(() => {
+  dotsContainer.innerHTML += '<span class="dot"></span>';
+});
+
+const dots = document.querySelectorAll(".dot");
+dots[0].classList.add("dot_selected");
 
 //ref première slide = mémorise "la première slide est index = 0
 let currentSlide = 0;
@@ -39,15 +46,7 @@ arrowLeft.addEventListener("click", function () {
     currentSlide = slides.length - 1;
   }
 
-  // image slide qui corrspond à la position
-  image.src = "./assets/images/slideshow/" + slides[currentSlide].image;
-  // p qui correspond à la position
-  tagLine.innerHTML = slides[currentSlide].tagLine;
-  // dots : retire la classe dot_selected (point blanc)
-  dots.forEach((dot) => dot.classList.remove("dot_selected"));
-  //Ajoute la classe dot_selected (point blanc) à la position actuelle
-  dots[currentSlide].classList.add("dot_selected");
-
+  updateSlide(currentSlide);
   console.log("Clic sur la flèche gauche");
 });
 
@@ -60,11 +59,15 @@ arrowRight.addEventListener("click", function () {
     currentSlide = 0;
   }
 
+  updateSlide(currentSlide);
+  console.log("Clic sur la flèche droite");
+});
+
+function updateSlide(currentSlide) {
   image.src = "./assets/images/slideshow/" + slides[currentSlide].image;
 
   tagLine.innerHTML = slides[currentSlide].tagLine;
 
   dots.forEach((dot) => dot.classList.remove("dot_selected"));
   dots[currentSlide].classList.add("dot_selected");
-  console.log("Clic sur la flèche droite");
-});
+}
