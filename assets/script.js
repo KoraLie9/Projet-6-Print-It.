@@ -47,7 +47,7 @@ arrowLeft.addEventListener("click", function () {
   }
 
   updateSlide(currentSlide);
-  console.log("Clic sur la flèche gauche");
+  // console.log("Clic sur la flèche gauche");
 });
 
 arrowRight.addEventListener("click", function () {
@@ -60,7 +60,7 @@ arrowRight.addEventListener("click", function () {
   }
 
   updateSlide(currentSlide);
-  console.log("Clic sur la flèche droite");
+  // console.log("Clic sur la flèche droite");
 });
 
 function updateSlide(currentSlide) {
